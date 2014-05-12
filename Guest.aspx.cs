@@ -12,6 +12,7 @@ namespace liuyanban
 {
     public partial class Guest : System.Web.UI.Page
     {
+        SqlConnection cn = new SqlConnection(new computer2011.ConnectDatabase().conn);
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -30,20 +31,20 @@ namespace liuyanban
                 return;
             }
             //连接数据库字符串 
-            string dbConnString = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"].ToString();
+            //string dbConnString = System.Configuration.ConfigurationManager.AppSettings["Cng"].ToStringonnectionStri();
             string sql = " INSERT INTO Guest (Contents) VALUES ('" + Contents.Text.Trim() + "')";
             try
             {
                 //using 是系统关键字, 作用是自动释放资源。
-                using (SqlConnection conn = new SqlConnection(dbConnString))
+                using (cn)
                 {
-                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    SqlCommand cmd = new SqlCommand(sql, cn);
                     //打开数据库连接 
-                    conn.Open();
+                    cn.Open();
                     //对数据进行插入操作, 返回影响行数 
                     int val = cmd.ExecuteNonQuery();
                     //关闭数据库连接;
-                    conn.Close();
+                    cn.Close();
                     if (val <= 0)
                         ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>window.alert('对不起，留言失败!')</script>");
                     else

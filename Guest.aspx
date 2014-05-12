@@ -73,8 +73,7 @@
                             <asp:Button ID="Button2" runat="server" Text="浏览留言" Height="30px" OnClick="Button2_Click" />
                         </p>
                         <p class="style1">
-                            <asp:LinkButton ID="LinkButton1" runat="server">返回主页</asp:LinkButton>
-                        </p>
+                            &nbsp;</p>
                         </form>
                     </td>
                 </tr>
